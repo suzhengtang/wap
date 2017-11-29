@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script>
+		(function (doc, win) {
+			var docEl = doc.documentElement;
+			var	resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
+			console.log(resizeEvt);
+			var	recalc = function () {
+					var clientWidth = docEl.clientWidth;
+					if (!clientWidth) return;
+					if (clientWidth >= 640) {
+						docEl.style.fontSize = '100px';
+					} else {
+						docEl.style.fontSize = 100 * (docEl.clientWidth / 320) + 'px';
+					}
+				};
+			if (!doc.addEventListener) return;
+			win.addEventListener(resizeEvt, recalc, false);
+			doc.addEventListener('DOMContentLoaded', recalc, false);
+		})(document, window);
+	</script>
+
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta content="telephone=no" name="format-detection">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			border: none;
+			list-style: none;
+		}
+
+		.all {
+			width: 100%;
+			height: auto;
+		}
+
+		.all .all-box {
+			width: 100%;
+			height: 100%;
+			background-color: skyblue;
+			overflow: hidden;
+		}
+
+		.all .all-box .box-left {
+			width: 30%;
+			background-color: pink;
+			float: left;
+			padding: 0.05rem;
+			box-sizing: border-box;
+		}
+		.all .all-box .box-left img{
+			display: block;
+			width: 100%;
+			vertical-align: top;
+		}
+
+		.all .all-box .box-right {
+			width: 70%;
+			float: right;
+			background-color: red;
+		}
+
+		p {
+			font-size: 0.10rem;  /*字体大小为20px     计算公式：20px/100/2=0.1rem*/
+		}
+	</style>
+</head>
+<body>
+<div class="all">
+	<div class="all-box">
+		<div class="box-left">
+			<img src="logo.png" alt="">
+			<!--<p>我是测试的文字，我是测试的文字</p>-->
+		</div>
+		<div class="box-right">
+			<p>我们是移动端测试的文字，看能不能自动适配！</p>
+			<p>写了一个库，利用rem为单位，来让页面自动适配！</p>
+			<p>￥500000.00元</p>
+		</div>
+	</div>
+</div>
+
+
+</body>
+</html>
